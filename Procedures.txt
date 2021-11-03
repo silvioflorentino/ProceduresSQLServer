@@ -1,0 +1,50 @@
+
+Pesquisa
+
+CREATE PROCEDURE pBuscaCodigoAluno
+@codigo int
+AS
+SELECT
+nomeAluno as Nome,
+emailAluno as Email,
+foneAluno as Telefone
+FROM tbaluno where codAluno = @codigo
+
+
+------------------- Alterar -----------
+CREATE PROCEDURE pAlterarAluno
+
+@nome nvarchar(50),
+@email nvarchar(50),
+@telefone nchar(11),
+@codigo int
+
+AS
+
+update tbaluno set nomeAluno = @nome, emailAluno = @email, foneAluno = @telefone where codAluno = @codigo
+
+------------------- Excluir
+
+CREATE PROCEDURE pDeletarAluno
+
+@codigo int
+
+AS
+
+delete from tbaluno where codAluno = @codigo
+
+
+---------------------- Inserir
+
+CREATE PROCEDURE pInserirAluno
+
+@nome nvarchar(50),
+@email nvarchar(50),
+@telefone nchar(11),
+@codigo int output
+
+AS
+
+Insert into tbaluno(nomeAluno, emailAluno, foneAluno) values (@nome, @email, @telefone)
+
+SELECT @codigo = @@IDENTITY from tbaluno
